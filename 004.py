@@ -4,25 +4,30 @@
 #Find the largest palindrome made from the product of two 3-digit numbers.
 
 #Extra from HackerRank: Find the largest palindrome made from the product of two 3-digit numbers which is less than N.
+#I extended this further to allow a digits parameter, d
 
 
-
-def is_palindrome(n):
-    return str(n) == str(n)[::-1]
-
-assert is_palindrome(1)
-assert not is_palindrome(10)
-assert is_palindrome(101)
-
-
-def largest_product_palindrome_less_than(n):
-    limit = int('9'*(len(str(n))//2))
+def largest_product_palindrome_less_than(d,n):
+    limit = int('9'*d)
     best = 0
     for i in range(limit):
-        for j in range(limit):
+        for j in range(1,i+1):
             current = i*j
             if current > n:
-                return best
-            if is_palindrome(current):
+                break
+            if current > best and is_palindrome(current):
                 best = current
-            
+    return best
+
+
+assert largest_product_palindrome_less_than(1, 10) == 9
+assert largest_product_palindrome_less_than(2, 10) == 9
+assert largest_product_palindrome_less_than(1, 100) == 9
+assert largest_product_palindrome_less_than(2, 100) == 99
+
+assert largest_product_palindrome_less_than(3, 101110) == 101101
+assert largest_product_palindrome_less_than(3, 800000) == 793397
+
+print(largest_product_palindrome_less_than(3,9999999))
+
+#> 993 * 913 = 906609
