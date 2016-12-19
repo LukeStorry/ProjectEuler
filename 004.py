@@ -13,7 +13,7 @@ def largest_product_palindrome_less_than(d,n):
     for i in range(limit):
         for j in range(1,i+1):
             current = i*j
-            if current > n:
+            if current >= n:
                 break
             if current > best and is_palindrome(current):
                 best = current
