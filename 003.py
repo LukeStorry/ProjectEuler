@@ -1,5 +1,5 @@
-#Solution to Project Euler Problem 2
-#https://projecteuler.net/problem=2
+#Solution to Project Euler Problem 3
+#https://projecteuler.net/problem=3
 #What is the largest prime factor of the number 600851475143?
 
 from math import sqrt
