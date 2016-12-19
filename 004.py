@@ -7,9 +7,22 @@
 
 
 
-def is_pallindrome(n):
+def is_palindrome(n):
     return str(n) == str(n)[::-1]
 
-assert is_pallindrome(1)
-assert not is_pallindrome(10)
-assert is_pallindrome(101)
+assert is_palindrome(1)
+assert not is_palindrome(10)
+assert is_palindrome(101)
+
+
+def largest_product_palindrome_less_than(n):
+    limit = int('9'*(len(str(n))//2))
+    best = 0
+    for i in range(limit):
+        for j in range(limit):
+            current = i*j
+            if current > n:
+                return best
+            if is_palindrome(current):
+                best = current
+            
