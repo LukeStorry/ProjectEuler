@@ -15,7 +15,6 @@ primes = 2 : sieve [3,5..]
         sieve (p:xs) = p : sieve [x | x <- xs, x `mod` p /= 0] 
 
 main :: IO ()
-main = do
-    t <- readLn :: IO Int
-    input <- getContents
-    mapM_ putStrLn $ map (show . nth . read) $ words input
+main = print $ nth 10001
+
+-- 104743
