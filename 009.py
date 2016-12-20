@@ -10,15 +10,21 @@
 import sys
 
 def abc(n):
-    for a in range(1, n//3, 2):
-        b = ((n-a)*(n-a)-a*a)//(2*(n-a))
+    results = [-1]
+    for a in range(n):
+        b = (a*a-(a-n)*(a-n))//(2*(a-n))
         c = n - a - b
-        if b > 0 and c > 0 and a*a + b*b == c*c:
-            return a*b*c
-    return -1
+        if a > 0 and b > 0 and c > 0 and a*a + b*b == c*c:
+            results.append(a*b*c)
+    return sorted(results)[-1]
 
 #assert abc(12) == 60
 #assert abc(4) == -1
+
+t = int(input().strip())
+for a0 in range(t):
+    n = int(input().strip())
+    print(abc(n))
 
 print (abc(1000))
 #> 31875000
