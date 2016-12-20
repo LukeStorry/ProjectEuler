@@ -10,11 +10,11 @@
 import sys
 
 def abc(n):
-    for a in range(1, n):
-        for b in range(a, n):
-            c = n - a - b
-            if c > 0 and c*c == a*a + b*b:
-                return a*b*c
+    for a in range(1, n//3, 2):
+        b = ((n-a)*(n-a)-a*a)//(2*(n-a))
+        c = n - a - b
+        if b > 0 and c > 0 and a*a + b*b == c*c:
+            return a*b*c
     return -1
 
 #assert abc(12) == 60
