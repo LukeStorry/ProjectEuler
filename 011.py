@@ -1,7 +1,6 @@
 # Solution to Project Euler Problem 11
 # https://projecteuler.net/problem=11
 # What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
-#!/bin/python3
 
 #!/bin/python3
 
