@@ -13,7 +13,10 @@ numberOfDivisors :: Int -> Int
 numberOfDivisors n = length [ x | x <- [1..n], n `mod` x == 0]
 
 
-main = do		 
-t <- readLn :: IO Int		
-input <- getContents
-mapM_ putStrLn $ map (show . euler12 . read) $ take t $ words input
+main = print $ euler12 500
+-- Timeout on HR
+
+-- main = do		 
+-- t <- readLn :: IO Int		
+-- input <- getContents
+-- mapM_ putStrLn $ map (show . euler12 . read) $ take t $ words input
