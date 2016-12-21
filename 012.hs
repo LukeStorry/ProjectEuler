@@ -5,9 +5,15 @@
 -- Uses haskell to use lazy evaluation of triangle generation
 
 euler12 :: Int -> Int
-euler12 n = head . filter ((>n) . numberOfDivisors) triangleNumbers
+euler12 n = head $ filter ((>n) . numberOfDivisors) triangleNumbers
+
+triangleNumbers = scanl1 (+) [1..]
 
 numberOfDivisors :: Int -> Int
 numberOfDivisors n = length [ x | x <- [1..n], n `mod` x == 0]
 
-triangleNumbers = scanl1 (+) [1..]
+
+main = do		 
+t <- readLn :: IO Int		
+input <- getContents
+mapM_ putStrLn $ map (show . euler12 . read) $ take t $ words input
