@@ -6,16 +6,19 @@
 
 import sys
 
+#any higher and memory causes segfaults
+limit = 100000000
+
 # for memoization
-arr_next = [0, 0, 1]
-arr_dist = [0, 0, 1]
+arr_next = [1, 1, 1] + [0]*limit
+arr_dist = [0, 0, 1] + [0]*limit
         
 def calc_cell(n):
     global arr
     if n >= len(arr_next):
-        arr_next.extend([None]*(n + 1 - len(arr_next)))
-        arr_dist.extend([None]*(n + 1 - len(arr_dist)))
-    if arr_next[n] is None:
+        print("Error: n=" +str(n))
+        exit()
+    if arr_next[n] == 0:
         next_val = n//2 if n%2==0 else 3*n+1
         arr_next[n] = next_val
         arr_dist[n] = calc_cell(next_val)[1] + 1
@@ -29,14 +32,16 @@ def euler14 (n):
         if steps >= best_steps:
             best_start = start
             best_steps = steps
-    return best_start
-        
-        
-print(euler14(1000000))    
+    return
+
+#Due to memory limits, max 25000
+print(euler14(25000))
+#> 23529
+
     
     
 # HR input:
-# t = int(input())
+# t = int(input())d
 # cases = []
 # for _ in range(t):
 #     n = (int(input()))
