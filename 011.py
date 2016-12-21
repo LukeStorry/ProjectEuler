@@ -1,6 +1,7 @@
 # Solution to Project Euler Problem 11
 # https://projecteuler.net/problem=11
 # What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+#!/bin/python3
 
 #!/bin/python3
 
@@ -37,9 +38,9 @@ def downright (row, col):
     vals = [grid[rows[i]][cols[i]] for i in range(adj)]
     return product(vals)
     
-def downright (row, col):
-    rows = [(row-x) % height for x in range(adj)]
-    cols = [(col+x) % width for x in range(adj)]
+def downleft (row, col):
+    rows = [(row+x) % height for x in range(adj)]
+    cols = [(col-x) % width for x in range(adj)]
     vals = [grid[rows[i]][cols[i]] for i in range(adj)]
     return product(vals)
     
@@ -47,11 +48,12 @@ def downright (row, col):
 best = 0
 for row in range (height):
     for col in range(width):
-        this = max(down(row, col), right(row, col), downright(row, col), downright(row, col))
+        this = max(down(row, col), right(row, col), downright(row, col), downleft(row, col))
         if this > best:
             best = this
             
 print(best)
+    
 
 #> 70600674
     
