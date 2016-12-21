@@ -4,27 +4,22 @@
 # Longest Collatz sequence
 # Which starting number, under one million, produces the longest chain?
 
-
 import sys
 
 # for memoization
-# (next_val, steps_to_0)
-arr = [(0,0),(0,0),(1,1)]
-        
-import sys
-
-# for memoization
-# (next_val, steps_to_0)
-arr = [(0,0),(0,0)]
+arr_next = [0, 0, 1]
+arr_dist = [0, 0, 1]
         
 def calc_cell(n):
     global arr
-    if n >= len(arr):
-        arr.extend([None]*(n + 1 - len(arr)))
-    if arr[n] is None:
+    if n >= len(arr_next):
+        arr_next.extend([None]*(n + 1 - len(arr_next)))
+        arr_dist.extend([None]*(n + 1 - len(arr_dist)))
+    if arr_next[n] is None:
         next_val = n//2 if n%2==0 else 3*n+1
-        arr[n] = (next_val, calc_cell(next_val)[1] + 1)
-    return arr[n]
+        arr_next[n] = next_val
+        arr_dist[n] = calc_cell(next_val)[1] + 1
+    return (arr_next[n], arr_dist[n])
 
 def euler14 (n):
     best_start = 0
@@ -35,6 +30,7 @@ def euler14 (n):
             best_start = start
             best_steps = steps
     return best_start
+        
         
 print(euler14(1000000))    
     
