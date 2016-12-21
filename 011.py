@@ -5,6 +5,7 @@
 
 #!/bin/python3
 
+
 import sys
 
 height = 20
@@ -23,30 +24,35 @@ def product(list):
     return p
     
 def down (row, col):
-    rows = [(row+x) % height for x in range(adj)]
+    if row > height-adj: return 0 
+    rows = [(row+x) for x in range(adj)]
     vals = [grid[r][col] for r in rows]
+    if row==19: print(vals)
     return product(vals)
 
 def right (row, col):
-    cols = [(col+x) % width for x in range(adj)]
+    if col > width-adj: return 0
+    cols = [(col+x) for x in range(adj)]
     vals = [grid[row][c] for c in cols]
     return product(vals)
 
 def downright (row, col):
-    rows = [(row+x) % height for x in range(adj)]
-    cols = [(col+x) % width for x in range(adj)]
+    if row > height-adj or col > width-adj: return 0
+    rows = [(row+x) for x in range(adj)]
+    cols = [(col+x) for x in range(adj)]
     vals = [grid[rows[i]][cols[i]] for i in range(adj)]
     return product(vals)
     
 def downleft (row, col):
-    rows = [(row+x) % height for x in range(adj)]
-    cols = [(col-x) % width for x in range(adj)]
+    if row > height-adj or col < adj: return 0
+    rows = [(row+x) for x in range(adj)]
+    cols = [(col-x) for x in range(adj)]
     vals = [grid[rows[i]][cols[i]] for i in range(adj)]
     return product(vals)
     
     
 best = 0
-for row in range (height):
+for row in range(height):
     for col in range(width):
         this = max(down(row, col), right(row, col), downright(row, col), downleft(row, col))
         if this > best:
