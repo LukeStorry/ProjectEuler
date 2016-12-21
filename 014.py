@@ -6,7 +6,7 @@
 
 import sys
 
-#any higher and memory causes segfaults
+# varies by system - memory causes segfaults
 limit = 100000000
 
 # for memoization
@@ -14,7 +14,7 @@ arr_next = [1, 1, 1] + [0]*limit
 arr_dist = [0, 0, 1] + [0]*limit
         
 def calc_cell(n):
-    global arr
+    global arr_next, arr_dist
     if n >= len(arr_next):
         print("Error: n=" +str(n))
         exit()
@@ -32,7 +32,7 @@ def euler14 (n):
         if steps >= best_steps:
             best_start = start
             best_steps = steps
-    return
+    return best_start
 
 #Due to memory limits, max 25000
 print(euler14(25000))
